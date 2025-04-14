@@ -2,48 +2,54 @@ import java.util.Scanner;
 public class motorista {
     public static void main(String [] args) {
         Scanner ler= new Scanner(System.in);
-        int idm=0,idmmedia=0,idmmaior=0, idp=0, idpmenor=0, sex=0, turno=0, sefemtarde=0, masculino2530=0, masculinototal=0, op=0;
-         System.out.printf ("Didite a operação desejada:");
-         System.out.printf ("1 - ler novo dado");
+        int idm=0,idmmedia=0,idmmaior=0, idp=0, idpmenor=200, sex=0, turno=0, sefemtarde=0, masculino2530=0, masculinototal=0, op=0, motorista=0;
+         System.out.printf ("\n Didite a operação desejada:");
+         System.out.printf ("\n 1 - ler novo dado");
+         System.out.printf ("\n 2 -  finalizar programa.");
+
+         op= ler.nextInt();
+         
          do{
-         System.out.printf ("Digite a idade do cliente:");
+         System.out.printf ("\n Digite a idade do cliente:");
          idp = ler.nextInt ();
          
-         System.out.printf ("Digite o gênero do cliente:");
-         System.out.printf ("1 - masculino");
-         System.out.printf ("2 - feminino");
+         System.out.printf ("\n Digite o gênero do cliente:");
+         System.out.printf ("\n 1 - masculino");
+         System.out.printf ("\n 2 - feminino");
          sex = ler.nextInt ();
-         if (sex==1) masculino= masculino +1;
+         if (sex==1) masculinototal++;
          
-         System.out.printf ("Digite o turno do dia em que o transporte foi realizado;");
-         System.out.printf ("1 -  manhã");
-         System.out.printf ("2 -  tarde");
-         System.out.printf ("3 -  noite");
+         System.out.printf ("\n Digite o turno do dia em que o transporte foi realizado;");
+         System.out.printf ("\n 1 -  manhã");
+         System.out.printf ("\n 2 -  tarde");
+         System.out.printf ("\n 3 -  noite");
          turno = ler.nextInt ();
          
-         System.out.printf ("Digite a idade do motorista:");
+         System.out.printf ("\n Digite a idade do motorista:");
          idm= ler.nextInt();
-         if (turno==2 && sex==2)idmmedia = idmmedia + idm;
+         
+         if (turno==2 && sex==2){
+          motorista++; 
+          idmmedia = idmmedia + idm;
+         }
          if (idm>idmmaior) idmmaior=idm;
-          
+         if (idp<idpmenor) idpmenor = idp;
+         if (sex==2 && idm>=25 && idm<=35) masculino2530= masculino2530 +1;
          
-            
-            
-         System.out.printf ("Didite a operação desejada:");
-         System.out.printf ("1 - ler novo dado.");
-         System.out.printf ("2 -  finalizar programa.");
-         
+         System.out.printf ("\n Didite a operação desejada:");
+         System.out.printf ("\n 1 - ler novo dado.");
+         System.out.printf ("\n 2 -  finalizar programa.");
+         op= ler.nextInt();
          
          
         }while (op==1);
+        idmmedia= idmmedia/motorista;
+        masculino2530= (masculino2530/masculinototal) * 100;
         
-         String dados = ("\n Maior idade motorista: %d"
-           + "\n menor idade cliente: %d"
-           + "\n media da idade de motoristas que transportaram mulheres à tarde: %d"
-           + "\n percentual de clientes do gênero masculino com motorista entre 25 e 30 anos: %d",
-          idmmaior, idpmenor , idmmedia, masculino2530);
-         
-         
-        System out.printf (dados);
+        String dados = ("\n Maior idade motorista: " + idmmaior
+           + "\n menor idade cliente: " + idpmenor
+           + "\n media da idade de motoristas que transportaram mulheres à tarde: " + idmmedia
+           + "\n percentual de clientes do gênero masculino com motorista entre 25 e 30 anos: " + masculino2530);
+         System.out.print (dados);
     }
 }
